@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora Científica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #input {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+        #output {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            width: 200px;
+        }
+        .btn {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .btn-long {
+            width: 105px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora Científica</h1>
+    <input type="text" id="input" readonly>
+    <div id="output"></div>
+    <table>
+        <tr>
+            <td><button class="btn" onclick="clearInput()">C</button></td>
+            <td><button class="btn" onclick="deleteLastChar()">&#9003;</button></td>
+            <td><button class="btn" onclick="appendChar('/')">&#247;</button></td>
+            <td><button class="btn" onclick="appendChar('*')">&#215;</button></td>
+            <td><button class="btn" onclick="appendChar('sqrt(')">√</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn" onclick="appendChar('7')">7</button></td>
+            <td><button class="btn" onclick="appendChar('8')">8</button></td>
+            <td><button class="btn" onclick="appendChar('9')">9</button></td>
+            <td><button class="btn" onclick="appendChar('-')">&#8722;</button></td>
+            <td><button class="btn" onclick="appendChar('pow(')">x<sup>y</sup></button></td>
+        </tr>
+        <tr>
+            <td><button class="btn" onclick="appendChar('4')">4</button></td>
+            <td><button class="btn" onclick="appendChar('5')">5</button></td>
+            <td><button class="btn" onclick="appendChar('6')">6</button></td>
+            <td><button class="btn" onclick="appendChar('+')">&#43;</button></td>
+            <td><button class="btn" onclick="appendChar('sin(')">sin</button></td>
+        </tr>
+        <tr>
+            <td><button class="btn" onclick="appendChar('1')">1</button></td>
+            <td><button class="btn" onclick="appendChar('2')">2</button></td>
+            <td><button class="btn" onclick="appendChar('3')">3</button></td>
+            <td rowspan="2"><button class="btn-long" onclick="calculate()">=</button></td>
+            <td><button class="btn" onclick="appendChar('cos(')">cos</button></td>
+        </tr>
+        <tr>
+            <td colspan
+            ="2"><button class="btn" onclick="appendChar('0')">0</button></td>
+<td><button class="btn" onclick="appendChar('.')">.</button></td>
+<td><button class="btn" onclick="appendChar('(')">(</button></td>
+<td><button class="btn" onclick="appendChar('tan(')">tan</button></td>
+</tr>
+</table>
+<script>
+    let input = document.getElementById("input");
+    let output = document.getElementById("output");
+
+    // Función para agregar caracteres al campo de entrada
+    function appendChar(char) {
+        input.value += char;
+    }
+
+    // Función para eliminar el último carácter del campo de entrada
+    function deleteLastChar() {
+        input.value = input.value.slice(0, -1);
+    }
+
+    // Función para limpiar el campo de entrada
+    function clearInput() {
+        input.value = "";
+        output.innerHTML = "";
+    }
+
+    // Función para realizar el cálculo y mostrar el resultado
+    function calculate() {
+        try {
+            output.innerHTML = eval(input.value);
+        } catch (error) {
+            output.innerHTML = "Error de cálculo";
+        }
+    }
+</script>
+</body>
+</html>
+
+
